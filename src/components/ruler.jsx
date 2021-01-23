@@ -53,10 +53,10 @@ export default class Well extends Component {
     const measuresCount = 10;
     for (let i = 0; i < measuresCount; i++) {
       const intervalBetweenMeasures = (i * 10) + margin;
-      const isCentalMeasure = (i === 5);
+      const isMiddleMeasure = (i === 5);
 
       // Mark central additional measure
-      if (isCentalMeasure) {
+      if (isMiddleMeasure) {
         ctx.fillRect(10, intervalBetweenMeasures, 30, 1);
       }
 
@@ -66,9 +66,28 @@ export default class Well extends Component {
     return;
   }
 
-  setAllAdditionalMeasures() {
+  setMeasureValues() {
     for (let i = 0; i < 8; i++) {
+      const canvas = document.getElementById("root");
+      const ctx = canvas.getContext("2d");
+
+      ctx.font = "30px Arial";
+      ctx.strokeText(
+        `${(i + 1) * 500}`, // Value of a measure to render
+        37,                 // Offset by horizontal (X)
+        (i + 1) * 100       // Offset by vertical (Y)
+      );
+    }
+    
+    return;
+  }
+
+  // This function works as Facade pattern
+  generateMeasures() {
+    for (let i = 0; i < 8; i++) {
+      this.setMainMeasures();
       this.setAdditionalMeasuresPart((i * 100) + 10);
+      this.setMeasureValues();
     }
 
     return;
@@ -80,9 +99,7 @@ export default class Well extends Component {
     return (
       <>
         {result}
-        {this.setMainMeasures()}
-        {/* {this.setAdditionalMeasuresPart()} */}
-        {this.setAllAdditionalMeasures()}
+        {this.generateMeasures()}
       </>
     );
   }
