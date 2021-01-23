@@ -1,19 +1,6 @@
 import React, { Component } from 'react';
 
 export default class Well extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      result: () => {},
-    };
-  }
-  
-  componentDidMount() {
-    this.setState({
-      result: this.createWell(),
-    });
-  }
-
   createWell() {
     const canvas = document.getElementById("root");
     const ctx = canvas.getContext("2d");
@@ -30,12 +17,10 @@ export default class Well extends Component {
   }
 
   render() {
-    const { result } = this.state;
+    this.createWell();
 
     return (
-      <>
-        {result}
-      </>
+      <></>
     );
   }
 }

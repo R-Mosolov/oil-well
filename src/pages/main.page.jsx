@@ -1,33 +1,40 @@
 import React, { Component } from 'react';
+
 import Ruler from '../components/ruler';
 import Well from '../components/well';
 import ViewScope from '../components/view-scope';
+import ViewScopeHelper from '../components/view-scope-helpers';
 
 export default class MainPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      targetHeight: 50,
+      viewScopeHeight: 50,
     };
   }
 
-  setViewScope(targetHeight) {
+  setViewScope(viewScopeHeight) {
+    const canvas = document.getElementById('root');
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     return this.setState({
-      targetHeight: targetHeight + 50,
+      viewScopeHeight: viewScopeHeight + 50,
     });
   }
   
   render() {
-    const { targetHeight } = this.state;
+    const { viewScopeHeight } = this.state;
 
-    window.addEventListener('scroll', () => this.setViewScope(targetHeight));
+    window.addEventListener('scroll', () => this.setViewScope(viewScopeHeight));
 
     return (
-      <div>
+      <>
         <Ruler />
         <Well />
-        <ViewScope targetHeight={targetHeight} />
-      </div>
+        <ViewScope viewScopeHeight={viewScopeHeight} />
+        <ViewScopeHelper viewScopeHeight={viewScopeHeight} />
+      </>
     );
   }
 }

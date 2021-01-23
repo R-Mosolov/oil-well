@@ -1,19 +1,6 @@
 import React, { Component } from 'react';
 
 export default class Well extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      result: () => {},
-    };
-  }
-  
-  componentDidMount() {
-    this.setState({
-      result: this.createRuler(),
-    });
-  }
-
   createRuler() {
     const canvas = document.getElementById("root");
     const ctx = canvas.getContext("2d");
@@ -84,6 +71,7 @@ export default class Well extends Component {
 
   // This function works as Facade pattern
   generateMeasures() {
+    this.createRuler();
     for (let i = 0; i < 8; i++) {
       this.setMainMeasures();
       this.setAdditionalMeasuresPart((i * 100) + 10);
@@ -94,11 +82,8 @@ export default class Well extends Component {
   }
 
   render() {
-    const { result } = this.state;
-    
     return (
       <>
-        {result}
         {this.generateMeasures()}
       </>
     );
