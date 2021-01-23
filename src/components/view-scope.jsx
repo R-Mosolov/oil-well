@@ -24,8 +24,6 @@ export default class Target extends Component {
   }
 
   render() {
-    const { result } = this.state;
-
     this.createViewScope(this.props.targetHeight);
 
     return (

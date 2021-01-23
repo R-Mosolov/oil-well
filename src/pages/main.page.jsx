@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Ruler from '../components/ruler';
 import Well from '../components/well';
 import ViewScope from '../components/view-scope';
 
@@ -23,6 +24,7 @@ export default class MainPage extends Component {
 
     return (
       <div>
+        <Ruler />
         <Well />
         <ViewScope targetHeight={targetHeight} />
       </div>
