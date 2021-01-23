@@ -3,19 +3,28 @@ import Well from '../components/well';
 import Target from '../components/target';
 
 export default class MainPage extends Component {
-  componentDidMount() {
-    window.addEventListener('scroll', this.setViewScope);
+  constructor(props) {
+    super(props);
+    this.state = {
+      targetHeight: 50,
+    };
   }
 
   setViewScope() {
-    return alert(1);
+    return this.setState({
+      targetHeight: this.state.targetHeight + 0.00000001,
+    });
   }
   
   render() {
+    const { targetHeight } = this.state;
+
+    window.addEventListener('scroll', () => this.setViewScope(targetHeight));
+
     return (
       <div>
         <Well />
-        <Target />
+        <Target targetHeight={targetHeight} />
       </div>
     );
   }

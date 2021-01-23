@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export default class Target extends Component {
-  createRulerBackground() {
+  createRulerBackground(targetHeight) {
     const canvas = document.getElementById("root");
     const ctx = canvas.getContext("2d");
 
@@ -12,12 +12,14 @@ export default class Target extends Component {
       650,                // Offset by horizontal (X)
       410,                // Offset by vertical (Y)
       100,                // Width
-      50,                 // Height
+      targetHeight,       // Height
     );
   }
 
   render() {
-    this.createRulerBackground();
+    const { targetHeight } = this.props;
+
+    this.createRulerBackground(targetHeight);
 
     return (
       <></>

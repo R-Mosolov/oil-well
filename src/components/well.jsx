@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export default class Well extends Component {
-  createRulerBackground() {
+  createWellBackground() {
     const canvas = document.getElementById("root");
     const ctx = canvas.getContext("2d");
 
@@ -17,7 +17,7 @@ export default class Well extends Component {
   }
 
   render() {
-    this.createRulerBackground();
+    this.createWellBackground();
 
     return (
       <></>
