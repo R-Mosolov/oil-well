@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
-import Ruler from '../components/ruler';
+import Well from '../components/well';
+import Target from '../components/target';
 
 export default class MainPage extends Component {
+  componentDidMount() {
+    window.addEventListener('scroll', this.setViewScope);
+  }
+
+  setViewScope() {
+    return alert(1);
+  }
+  
   render() {
     return (
-      <Ruler />
+      <div>
+        <Well />
+        <Target />
+      </div>
     );
   }
 }
