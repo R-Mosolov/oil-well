@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Well from '../components/well';
-import Target from '../components/target';
+import ViewScope from '../components/view-scope';
 
 export default class MainPage extends Component {
   constructor(props) {
@@ -10,9 +10,9 @@ export default class MainPage extends Component {
     };
   }
 
-  setViewScope() {
+  setViewScope(targetHeight) {
     return this.setState({
-      targetHeight: this.state.targetHeight + 0.00000001,
+      targetHeight: targetHeight + 50,
     });
   }
   
@@ -24,7 +24,7 @@ export default class MainPage extends Component {
     return (
       <div>
         <Well />
-        <Target targetHeight={targetHeight} />
+        <ViewScope targetHeight={targetHeight} />
       </div>
     );
   }
