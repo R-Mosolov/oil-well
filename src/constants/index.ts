@@ -1,0 +1,7 @@
+const RULER_HEIGHT: number = 800;
+const ADDITIONAL_MEASURES_COUNT: number = 10;
+
+export {
+  RULER_HEIGHT,
+  ADDITIONAL_MEASURES_COUNT,
+};

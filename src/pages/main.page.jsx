@@ -19,7 +19,7 @@ export default class MainPage extends Component {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     return this.setState({
-      viewScopeHeight: viewScopeHeight + 50,
+      viewScopeHeight: viewScopeHeight + 100,
     });
   }
   

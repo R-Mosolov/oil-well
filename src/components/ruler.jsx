@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 
+import { RULER_HEIGHT, ADDITIONAL_MEASURES_COUNT } from '../constants';
+import * as utils from '../utils';
+
+export const mainMeasuresCount = 8;
+const additionalMeasuresHeight = utils.calcMainMeasuresHeight() / ADDITIONAL_MEASURES_COUNT;
+
 export default class Well extends Component {
   createRuler() {
     const canvas = document.getElementById("root");
@@ -12,7 +18,7 @@ export default class Well extends Component {
       10,                 // Offset by horizontal (X)
       10,                 // Offset by vertical (Y)
       100,                // Width
-      800,                // Height
+      RULER_HEIGHT,       // Height
     );
   }
 
@@ -22,9 +28,8 @@ export default class Well extends Component {
 
     ctx.fillStyle = "black";
 
-    const measuresCount = 8;
-    for (let i = 0; i < measuresCount; i++) {
-      const intervalBetweenMeasures = (i * 100) + 10;
+    for (let i = 0; i < mainMeasuresCount; i++) {
+      const intervalBetweenMeasures = (i * utils.calcMainMeasuresHeight()) + 10;
       ctx.fillRect(10, intervalBetweenMeasures, 100, 1);
     }
 
@@ -37,9 +42,8 @@ export default class Well extends Component {
 
     ctx.fillStyle = "black";
 
-    const measuresCount = 10;
-    for (let i = 0; i < measuresCount; i++) {
-      const intervalBetweenMeasures = (i * 10) + margin;
+    for (let i = 0; i < ADDITIONAL_MEASURES_COUNT; i++) {
+      const intervalBetweenMeasures = (i * additionalMeasuresHeight) + margin;
       const isMiddleMeasure = (i === 5);
 
       // Mark central additional measure
@@ -54,15 +58,15 @@ export default class Well extends Component {
   }
 
   setMeasureValues() {
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < mainMeasuresCount; i++) {
       const canvas = document.getElementById("root");
       const ctx = canvas.getContext("2d");
 
       ctx.font = "30px Arial";
       ctx.strokeText(
-        `${(i + 1) * 500}`, // Value of a measure to render
-        37,                 // Offset by horizontal (X)
-        (i + 1) * 100       // Offset by vertical (Y)
+        `${(i + 1) * 500}`,           // Value of a measure to render
+        37,                           // Offset by horizontal (X)
+        (i + 1) * utils.calcMainMeasuresHeight()  // Offset by vertical (Y)
       );
     }
     
@@ -72,9 +76,9 @@ export default class Well extends Component {
   // This function works as Facade pattern
   generateMeasures() {
     this.createRuler();
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < mainMeasuresCount; i++) {
       this.setMainMeasures();
-      this.setAdditionalMeasuresPart((i * 100) + 10);
+      this.setAdditionalMeasuresPart((i * utils.calcMainMeasuresHeight()) + 10);
       this.setMeasureValues();
     }
 
