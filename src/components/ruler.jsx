@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 
-import { RULER_HEIGHT, ADDITIONAL_MEASURES_COUNT } from '../constants';
-import * as utils from '../utils';
-
-export const mainMeasuresCount = 8;
-const additionalMeasuresHeight = utils.calcMainMeasuresHeight() / ADDITIONAL_MEASURES_COUNT;
+// Set main constants
+const RULER_HEIGHT = 800;
+const ADDITIONAL_MEASURES_COUNT = 10;
 
 export default class Well extends Component {
   createRuler() {
@@ -22,21 +20,21 @@ export default class Well extends Component {
     );
   }
 
-  setMainMeasures() {
+  setMainMeasures(mainMeasuresCount, mainMeasuresHeight) {
     const canvas = document.getElementById("root");
     const ctx = canvas.getContext("2d");
 
     ctx.fillStyle = "black";
 
     for (let i = 0; i < mainMeasuresCount; i++) {
-      const intervalBetweenMeasures = (i * utils.calcMainMeasuresHeight()) + 10;
+      const intervalBetweenMeasures = (i * mainMeasuresHeight) + 10;
       ctx.fillRect(10, intervalBetweenMeasures, 100, 1);
     }
 
     return;
   }
 
-  setAdditionalMeasuresPart(margin) {
+  setAdditionalMeasuresPart(margin, additionalMeasuresHeight) {
     const canvas = document.getElementById("root");
     const ctx = canvas.getContext("2d");
 
@@ -57,7 +55,7 @@ export default class Well extends Component {
     return;
   }
 
-  setMeasureValues() {
+  setMeasureValues(mainMeasuresCount, mainMeasuresHeight) {
     for (let i = 0; i < mainMeasuresCount; i++) {
       const canvas = document.getElementById("root");
       const ctx = canvas.getContext("2d");
@@ -66,7 +64,7 @@ export default class Well extends Component {
       ctx.strokeText(
         `${(i + 1) * 500}`,           // Value of a measure to render
         37,                           // Offset by horizontal (X)
-        (i + 1) * utils.calcMainMeasuresHeight()  // Offset by vertical (Y)
+        (i + 1) * mainMeasuresHeight  // Offset by vertical (Y)
       );
     }
     
@@ -74,22 +72,36 @@ export default class Well extends Component {
   }
 
   // This function works as Facade pattern
-  generateMeasures() {
+  generateMeasures(
+    mainMeasuresCount,
+    mainMeasuresHeight,
+    additionalMeasuresHeight
+  ) {
     this.createRuler();
+    
     for (let i = 0; i < mainMeasuresCount; i++) {
-      this.setMainMeasures();
-      this.setAdditionalMeasuresPart((i * utils.calcMainMeasuresHeight()) + 10);
-      this.setMeasureValues();
+      this.setMainMeasures(mainMeasuresCount, mainMeasuresHeight);
+      this.setAdditionalMeasuresPart((i * mainMeasuresHeight) + 10, additionalMeasuresHeight);
+      this.setMeasureValues(mainMeasuresCount, mainMeasuresHeight);
     }
 
     return;
   }
 
   render() {
+    const { mainMeasuresCount } = this.props;
+
+    const mainMeasuresHeight = RULER_HEIGHT / mainMeasuresCount;
+    const additionalMeasuresHeight = mainMeasuresHeight / ADDITIONAL_MEASURES_COUNT;
+
+    this.generateMeasures(
+      mainMeasuresCount,
+      mainMeasuresHeight,
+      additionalMeasuresHeight,
+    );
+
     return (
-      <>
-        {this.generateMeasures()}
-      </>
+      <></>
     );
   }
 }

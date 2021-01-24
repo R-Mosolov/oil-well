@@ -10,27 +10,29 @@ export default class MainPage extends Component {
     super(props);
     this.state = {
       viewScopeHeight: 100,
+      mainMeasuresCount: 8,
     };
   }
 
-  setViewScope(viewScopeHeight) {
+  setViewScope(viewScopeHeight, mainMeasuresCount) {
     const canvas = document.getElementById('root');
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     return this.setState({
       viewScopeHeight: viewScopeHeight + 100,
+      mainMeasuresCount: mainMeasuresCount - 1
     });
   }
   
   render() {
-    const { viewScopeHeight } = this.state;
+    const { viewScopeHeight, mainMeasuresCount } = this.state;
 
-    window.addEventListener('scroll', () => this.setViewScope(viewScopeHeight));
+    window.addEventListener('scroll', () => this.setViewScope(viewScopeHeight, mainMeasuresCount));
 
     return (
       <>
-        <Ruler />
+        <Ruler mainMeasuresCount={mainMeasuresCount} />
         <Well />
         <ViewScope viewScopeHeight={viewScopeHeight} />
         <ViewScopeHelper viewScopeHeight={viewScopeHeight} />
