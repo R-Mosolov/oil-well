@@ -7,14 +7,14 @@ export default class ViewScopeHelper extends Component {
 
     // Create top helper
     ctx.beginPath();
-    ctx.moveTo(120, 410 - (viewScopeHeight / 2));
-    ctx.lineTo(1320, 410 - (viewScopeHeight / 2));
+    ctx.moveTo(120, 360 - (viewScopeHeight / 2));
+    ctx.lineTo(1320, 360 - (viewScopeHeight / 2));
     ctx.stroke();
 
     // Create bottom helper
     ctx.beginPath();
-    ctx.moveTo(120, 410 - (viewScopeHeight / 2) + viewScopeHeight);
-    ctx.lineTo(1320, 410 - (viewScopeHeight / 2) + viewScopeHeight);
+    ctx.moveTo(120, 360 - (viewScopeHeight / 2) + viewScopeHeight);
+    ctx.lineTo(1320, 360 - (viewScopeHeight / 2) + viewScopeHeight);
     ctx.stroke();
   }
 

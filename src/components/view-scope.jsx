@@ -10,7 +10,7 @@ export default class ViewScope extends Component {
     ctx.fillStyle = customGrey;
     return ctx.fillRect(            // Set the ruler coords
       660,                          // Offset by horizontal (X)
-      410 - (viewScopeHeight / 2),  // Offset by vertical (Y)
+      360 - (viewScopeHeight / 2),  // Offset by vertical (Y)
       80,                           // Width
       viewScopeHeight,              // Height
     );

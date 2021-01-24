@@ -9,7 +9,7 @@ export default class MainPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      viewScopeHeight: 50,
+      viewScopeHeight: 100,
     };
   }
 
