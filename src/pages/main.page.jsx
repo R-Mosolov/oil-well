@@ -28,14 +28,16 @@ export default class MainPage extends Component {
   render() {
     const { viewScopeHeight, mainMeasuresCount } = this.state;
 
-    window.addEventListener('scroll', () => this.setViewScope(viewScopeHeight, mainMeasuresCount));
+    window.addEventListener('scroll', () => {
+      return this.setViewScope(viewScopeHeight, mainMeasuresCount);
+    });
 
     return (
       <>
         <Ruler mainMeasuresCount={mainMeasuresCount} />
+        <ViewScope mainMeasuresCount={mainMeasuresCount} />
+        <ViewScopeHelper mainMeasuresCount={mainMeasuresCount} />
         <Well />
-        <ViewScope viewScopeHeight={viewScopeHeight} />
-        <ViewScopeHelper viewScopeHeight={viewScopeHeight} />
       </>
     );
   }

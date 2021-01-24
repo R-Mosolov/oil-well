@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { RULER_HEIGHT } from '../constants';
+
 export default class Well extends Component {
   createWell() {
     const canvas = document.getElementById("root");
@@ -12,7 +14,7 @@ export default class Well extends Component {
       650,                // Offset by horizontal (X)
       10,                 // Offset by vertical (Y)
       100,                // Width
-      800,                // Height
+      RULER_HEIGHT,       // Height
     );
   }
 

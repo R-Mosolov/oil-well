@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-// Set main constants
-const RULER_HEIGHT = 800;
-const ADDITIONAL_MEASURES_COUNT = 10;
+import { RULER_HEIGHT, ADDITIONAL_MEASURES_COUNT } from '../constants';
+import { utils } from '../utils';
 
 export default class Well extends Component {
   createRuler() {
@@ -91,8 +90,8 @@ export default class Well extends Component {
   render() {
     const { mainMeasuresCount } = this.props;
 
-    const mainMeasuresHeight = RULER_HEIGHT / mainMeasuresCount;
-    const additionalMeasuresHeight = mainMeasuresHeight / ADDITIONAL_MEASURES_COUNT;
+    const mainMeasuresHeight = utils.calcMainMeasuresHeight(mainMeasuresCount);
+    const additionalMeasuresHeight = utils.calcAdditionalMeasuresHeight(mainMeasuresCount);
 
     this.generateMeasures(
       mainMeasuresCount,
